@@ -1,0 +1,13 @@
+import { SignUp } from "@clerk/nextjs";
+import React from "react";
+const Page = () => {
+    return <SignUp
+        path="/sign-up"
+        routing="path"
+        forceRedirectUrl="/dashnboard"
+        signUpUrl="/sign-in"
+    />;
+}
+
+
+export default Page;
