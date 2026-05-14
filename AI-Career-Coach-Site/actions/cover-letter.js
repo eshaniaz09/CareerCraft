@@ -18,11 +18,11 @@ export async function generateCoverLetter(data) {
   if (!user) throw new Error("User not found");
 
   const prompt = `
-    Write a professional cover letter for a ${data.jobTitle} position at ${
-    data.companyName
-  }.
+    Write a professional cover letter for a ${data.jobTitle} position at ${data.companyName}.
     
     About the candidate:
+    - Name: ${user.name || "The Candidate"}
+    - Email: ${user.email || ""}
     - Industry: ${user.industry}
     - Years of Experience: ${user.experience}
     - Skills: ${user.skills?.join(", ")}
@@ -39,6 +39,13 @@ export async function generateCoverLetter(data) {
     5. Use proper business letter formatting in markdown
     6. Include specific examples of achievements
     7. Relate candidate's background to job requirements
+    
+    CRITICAL INSTRUCTIONS:
+    - DO NOT include ANY placeholders in brackets like [Your Address], [Your Phone Number], [Company Address], etc.
+    - Use the candidate's actual Name (${user.name || "The Candidate"}) and Email (${user.email || ""}) at the top.
+    - Omit any contact information you do not have (like address, phone number, or LinkedIn). Do not use placeholders for them.
+    - Use today's date (${new Date().toLocaleDateString()}) instead of [Date].
+    - Sign off the letter with the candidate's actual Name: ${user.name || "The Candidate"}.
     
     Format the letter in markdown.
   `;
