@@ -32,29 +32,35 @@ CareerCraft is built using modern web technologies to ensure a scalable, fast, a
 
 ---
 
-## 🧩 Core Modules & Working
+## 🧩 Core Modules & Working Detailed Explanation
 
-### 1. Authentication & Onboarding
-Secure user authentication is managed via **Clerk**. Upon first login, users go through a tailored onboarding flow where they input their current industry, experience level, and future career goals. The system securely saves this profile and uses it to personalize all subsequent AI interactions.
+### 1. Authentication & Onboarding Flow
+- **Working:** Secure user authentication is managed via **Clerk**, supporting seamless social logins and email sign-ups. Upon first successful login, users are redirected to a comprehensive onboarding questionnaire.
+- **Details:** The system captures essential career metrics: current industry, years of experience, core skills, and long-term career goals. This user profile is securely persisted in a PostgreSQL database via Prisma ORM. By maintaining this context, the platform acts as a personalized coach, ensuring that all AI-generated content (like resumes and roadmaps) is hyper-tailored to the individual's specific background rather than producing generic outputs.
 
-### 2. Interactive Dashboard
-The central hub for the user. It aggregates live industry trends, displays progress on their generated career roadmap, and provides quick navigation to the core tools. Data visualization is beautifully rendered using **Recharts**.
+### 2. Interactive Career Dashboard
+- **Working:** The dashboard acts as the central command center for the user's career journey.
+- **Details:** It features real-time, dynamic data visualizations built with **Recharts**, which display personalized industry insights, trending skills, and salary expectations based on the user's profile. The dashboard also tracks progress from the generated career roadmap and offers quick-action widgets to instantly jump into resume building, interview prep, or cover letter drafting.
 
 ### 3. AI Career Roadmap & Guidance (`/career_guide`)
-Users can generate a dynamic, step-by-step career roadmap. By analyzing the user's profile and desired job role, **Google Gemini AI** creates a customized timeline including learning paths, essential skills to acquire, and key milestones. Users can interact with this roadmap and download it as a PDF for offline reference.
+- **Working:** A transformative tool that charts out a user's professional future step-by-step.
+- **Details:** The user inputs a desired future job role. **Google Gemini AI** processes this along with the user's current onboarding data to dynamically generate a structured timeline. This timeline is broken down into actionable phases (e.g., 0-3 months, 3-6 months), detailing specific technical skills to learn, soft skills to develop, certifications to pursue, and key milestones to achieve. Users can interact with this roadmap visually and export it via a custom-built PDF generator (`html2pdf.js`) for offline tracking.
 
-### 4. Smart Resume Builder (`/resume`)
-A fully interactive and dynamic resume builder designed to beat ATS (Applicant Tracking Systems). 
-- **Live Preview:** See layout and formatting changes in real-time.
-- **AI Bullet Generation:** Generate high-impact bullet points for work experiences based on job titles.
-- **CV Tailoring:** Paste a specific job description, and the AI will automatically suggest resume modifications to highlight matching skills.
-- **Export:** High-quality, one-click PDF export using `html2pdf.js`.
+### 4. Smart ATS-Friendly Resume Builder (`/resume`)
+- **Working:** A fully interactive, dynamic document editor engineered to bypass Applicant Tracking Systems (ATS).
+- **Details:** 
+  - **Live Preview Engine:** The interface provides a split-pane view where formatting changes, theme selections, and content edits are reflected instantly in a pristine, print-ready preview.
+  - **AI Bullet Generation:** Users simply type a past job title, and the AI suggests high-impact, quantifiable bullet points that highlight achievements rather than just duties.
+  - **CV Tailoring Engine:** One of the standout features. Users paste a specific job description they are applying for. The system analyzes the JD against the user's current resume and provides actionable recommendations to bridge skill gaps, naturally integrating required keywords into the resume to increase the chance of getting shortlisted.
+  - **One-Click Export:** Generates high-quality, pixel-perfect PDFs utilizing `html2canvas` and `jsPDF`.
 
 ### 5. AI Cover Letter Generator (`/ai-cover-letter`)
-Eliminates writer's block by automatically drafting professional, customized cover letters. Users simply provide a target job description, and the AI seamlessly blends their existing profile data with the job requirements to craft a compelling narrative.
+- **Working:** Eliminates the tedious process of writing cover letters from scratch while ensuring high relevance to the target job.
+- **Details:** The user provides a target job description and the company name. The AI seamlessly blends the user's stored profile data (experience, tone, and core strengths) with the specific requirements of the job. It drafts a compelling, professional narrative that highlights why the candidate is the perfect cultural and technical fit for the role. The generated letter can be refined in a rich text editor before final export.
 
 ### 6. Mock Interview Simulator (`/interview`)
-An intelligent interview preparation module. The AI generates role-specific interview questions based on the user's target job. Users can provide their answers via text, and the system evaluates their responses, offering constructive feedback, scoring, and actionable suggestions for improvement.
+- **Working:** An intelligent, interactive interview preparation module designed to build user confidence.
+- **Details:** Based on the user's target role, the AI generates a customized set of technical and behavioral interview questions. Users can type out their answers in a simulated environment. Once submitted, the system evaluates the responses in real-time, offering a quantitative score, constructive feedback on areas of improvement, and an "ideal AI answer" to demonstrate best practices for phrasing and structuring responses.
 
 ---
 
